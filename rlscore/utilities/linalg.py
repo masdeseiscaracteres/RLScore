@@ -39,9 +39,10 @@ def svd_economy_sized(X):
     evecs, svals, U = la.svd(X, full_matrices=0)
     evals = np.multiply(svals, svals)
     
-    evecs = evecs[:, svals > 0]
-    svals = svals[svals > 0]
-    U = U[svals > 0]
+    nonzero_svals = svals > 0
+    evecs = evecs[:, nonzero_svals]
+    svals = svals[nonzero_svals]
+    U = U[nonzero_svals]
     return evecs, svals, U
 
 
